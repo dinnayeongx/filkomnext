@@ -17,10 +17,8 @@ const Dialog = ({ title, description, isOpen = false, onClose }: DialogProps) =>
                 <h1 className="font-semibold text-xl text-black text-center">{title}</h1>
                 <p className="text-black text-xl text-center">{description}</p>
                 <div className="flex gap-10">
-                    <Button onClick={onClose}>Iya</Button>
-                    <Button onClick={onClose} className="bg-[#FF3333] hover:text-[#FF3333]">
-                        Tidak
-                    </Button>
+                    <Button onClick={onClose} variant="primary">Iya</Button>
+                    <Button onClick={onClose} variant="secondary">Tidak</Button>
                 </div>
             </div>
         </>

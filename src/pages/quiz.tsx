@@ -20,6 +20,7 @@ const Quiz = () => {
   const handleNext = () => {
     if (currentPage < totalPages) {
       setCurrentPage((prev) => prev + 1);
+      scrollTo({ top: 0, behavior: "smooth" });
     } 
     else {
       setShowDialog(true);
@@ -27,21 +28,17 @@ const Quiz = () => {
   };
 
   return (
-    <div className="bg-primary bg-opacity-5 py-16 px-40 justify-center items-center min-h-screen relative z-0 backdrop-filter-none">
-      <div className="flex flex-col justify-center items-center gap-16">
-        <img src="/FilkomNEXT.svg" alt="" />
-        <ProgressBar progress={(currentPage / totalPages) * 100} />
-        <div className="text-black text-3xl">
-          {currentQuestions.map((q) => (
-            <div key={q.id} className="flex flex-col gap-16 text-center justify-center mb-20">
-              <span className="font-semibold">
-                {q.id}. {q.question}
-              </span>
-              <Radio questionId={q.id} />
-            </div>
-          ))}
-        </div>
-        <Button onClick={handleNext}>
+    <div className="bg-primary bg-opacity-5 py-16 px-10 flex flex-col items-start min-h-[150vh] relative z-0">
+      <div className="flex flex-col gap-16 mx-auto justify-center items-center">
+        <img src="/FilkomNEXT.svg" alt="" className="mx-auto" />
+        <ProgressBar progress={(currentPage / totalPages) * 100} currentPage={currentPage}/>
+        {currentQuestions.map((q) => (
+          <div key={q.id} className="flex flex-col gap-6 text-center mb-8">
+            <span className="font-semibold text-2xl">{q.id}. {q.question}</span>
+            <Radio questionId={q.id} />
+          </div>
+        ))}
+        <Button onClick={handleNext} variant="primary">
           {currentPage === totalPages ? "Selesai" : "Selanjutnya"}
         </Button>
       </div>
